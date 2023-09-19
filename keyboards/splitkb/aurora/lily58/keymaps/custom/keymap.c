@@ -5,7 +5,14 @@ enum layer_number {
   _LOWER,
   _RAISE,
   _ADJUST,
-  _QWERTY
+  _QWERTY,
+  _NAV,
+  _MOUSE,
+  _BUTTON,
+  _MEDIA,
+  _NUM,
+  _SYM,
+  _FUN
 };
 
 
@@ -119,6 +126,63 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                              _______, _______, _______, _______, _______,  _______, _______, _______
+  ),
+
+  [_NAV] = LAYOUT(
+  _______, _______, _______, _______, _______, _______,                     _______, _______, _______, _______, _______, _______,
+  _______, _______, _______, _______, _______, _______,                      KC_AGIN,  KC_PSTE, KC_COPY, KC_CUT, KC_UNDO, _______,
+  _______, _______, KC_LALT, KC_LCTL, KC_LSFT,   _______,                    KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, ______,
+  _______, _______, _______, _______, _______, _______,   _______, _______,  KC_INS, KC_HOME, KC_PGDN,  KC_PGUP, KC_END,  ______,
+                             _______, _______, _______,  _______, KC_ENTER,  KC_BSPC, KC_DELETE, _______
+  ),
+
+  [_MOUSE] = LAYOUT(
+  _______, _______, _______, _______, _______, _______,                     _______, _______, _______, _______, _______, _______,
+  _______, _______, _______, _______, _______, _______,                      KC_AGIN,  KC_PSTE, KC_COPY, KC_CUT, KC_UNDO, _______,
+  _______, _______, KC_LALT, KC_LCTL, KC_LSFT,   _______,                    KC_CAPS, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, ______,
+  _______, _______, _______, _______, _______, _______,   _______, _______,  KC_INS,  KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R,  ______,
+                             _______, _______, _______,  _______,  KC_BTN2,  KC_BTN1, KC_BTN3, _______
+  ),
+
+  [_BUTTON] = LAYOUT(
+  _______, _______, _______, _______, _______, _______,                     _______, _______, _______, _______, _______, _______,
+  _______, KC_UNDO,  KC_CUT, KC_COPY, KC_PSTE, KC_AGIN,                      KC_AGIN,  KC_PSTE, KC_COPY, KC_CUT, KC_UNDO, _______,
+  _______, _______, KC_LALT, KC_LCTL, KC_LSFT,   _______,                    _______, KC_RSFTL, KC_RCTL, KC_RALT, ______, ______,
+  _______, KC_UNDO,  KC_CUT, KC_COPY, KC_PSTE, KC_AGIN,   _______, _______,  KC_AGIN,  KC_PSTE, KC_COPY, KC_CUT, KC_UNDO,  ______,
+                             _______, KC_BTN3, KC_BTN1,  KC_BTN2,  KC_BTN2,  KC_BTN1, KC_BTN3, _______
+  ),
+
+  [_MEDIA] = LAYOUT(
+  _______, _______, _______, _______, _______, _______,                     _______, _______, _______, _______, _______, _______,
+  _______, _______, _______, _______, _______, _______,                     RGB_TOG, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, _______,
+  _______, _______, KC_LALT, KC_LCTL, KC_LSFT,   _______,                    ______, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, ______,
+  _______, _______, _______, _______, _______, _______,   _______, _______,  ______,  ______, _____, ______, _______,  ______,
+                             _______, _______, _______,  _______,  KC_STOP, KC_MPLY, KC_MUTE, _______
+  ),
+
+  [_NUM] = LAYOUT(
+  _______, _______, _______, _______, _______, _______,                     _______, _______, _______, _______, _______, _______,
+  _______, KC_LBRC,    KC_7,    KC_8,    KC_9, KC_RBRC,                     _______, _______, _______, _______, _______, _______,
+  _______, KC_SCLN,    KC_4,    KC_5,    KC_6, KC_EQL,                    ______, KC_RSFTL,KC_RCTL,KC_RALT, _____, _______,
+  _______, KC_GRAVE,   KC_1,    KC_2,    KC_3, KC_BSLS,   _______, _______,  ______,  ______, _____, ______, _______,  ______,
+                             _______,  KC_DOT,    KC_0,  KC_MINS,  _______, ______, ______, _______
+  ),
+
+
+  [_SYM] = LAYOUT(
+  _______, _______, _______, _______, _______, _______,                     _______, _______, _______, _______, _______, _______,
+  _______, KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,                     _______, _______, _______, _______, _______, _______,
+  _______, KC_COLN,  KC_DLR, KC_PERC, KC_CIRC, KC_PLUS,                    ______, KC_RSFTL,KC_RCTL,KC_RALT, _____, _______,
+  _______, KC_TILD, KC_EXLM,   KC_AT, KC_HASH, KC_PIPE,   _______, _______,  ______,  ______, _____, ______, _______,  ______,
+                             _______, KC_LPRN, KC_RPRN,  KC_UNDS,  _______, ______, ______, _______
+  ),
+
+  [_FUN] = LAYOUT(
+  _______, _______, _______, _______, _______, _______,                     _______, _______, _______, _______, _______, _______,
+  _______, KC_F12, KC_F7, KC_F8, KC_F9, KC_PSCR,                     _______, _______, _______, _______, _______, _______,
+  _______, KC_F11,  KC_F4, KC_F5, KC_F6, KC_SCRL,                    ______, KC_RSFTL,KC_RCTL,KC_RALT, _____, _______,
+  _______, KC_F10, KC_F1,   KC_F2, KC_F3, KC_PAUS,   _______, _______,  ______,  ______, _____, ______, _______,  ______,
+                             _______, KC_APP, KC_SPC, KC_TAB,  _______, ______, ______, _______
   )
 };
 
