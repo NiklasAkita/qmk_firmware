@@ -223,23 +223,61 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 // }
 
-// layer_state_t layer_state_set_user(layer_state_t state) {
-//     switch (get_highest_layer(state)) {
-//     case _RAISE:
-//         rgblight_setrgb (0x00,  0x00, 0xFF);
-//         break;
-//     case _LOWER:
-//         rgblight_setrgb (0xFF,  0x00, 0x00);
-//         break;
-//     case _ADJUST:
-//         rgblight_setrgb (0x7A,  0x00, 0xFF);
-//         break;
-//     default: //  for any other layers, or the default layer
-//         rgblight_setrgb (0x00,  0xFF, 0xFF);
-//         break;
-//     }
-//   return state;
-// }
+  // layer_state_t layer_state_set_user(layer_state_t state) {
+  //     switch (get_highest_layer(state)) {
+  //     case _RAISE:
+  //         rgblight_sethsv_noeeprom (0x00,  0x00, 0xFF);
+  //         break;
+  //     case _LOWER:
+  //         rgblight_sethsv_noeeprom (0xFF,  0x00, 0x00);
+  //         break;
+  //     case _ADJUST:
+  //         rgblight_sethsv_noeeprom (0x7A,  0x00, 0xFF);
+  //         break;
+  //     default: //  for any other layers, or the default layer
+  //         rgblight_sethsv_noeeprom (0xFF,  0x00, 0xFF);
+  //         break;
+  //     }
+  //   return state;
+  // }
+
+void keyboard_post_init_user(void) {
+    // Initialize RGB to static black
+    rgblight_sethsv_noeeprom(HSV_BLUE);
+}
+void housekeeping_task_user(void) {
+  switch (get_highest_layer(layer_state | default_layer_state)) {
+    case _NAV:
+        rgblight_sethsv_noeeprom(HSV_ORANGE);
+        break;
+    case _NUM2:
+        rgblight_sethsv_noeeprom(HSV_BLUE);
+        break;
+    case _FUN:
+        rgblight_sethsv_noeeprom(HSV_RED);
+        break;
+    case _SYM2:
+        rgblight_sethsv_noeeprom(HSV_GREEN);
+        break;
+    case _NAV_SINGLE:
+        rgblight_sethsv_range(HSV_OFF, 0, 3);
+        rgblight_sethsv_at(HSV_ORANGE,   3);
+        rgblight_sethsv_range(HSV_OFF, 4, 8);
+        rgblight_sethsv_range(HSV_ORANGE, 8, 11   );
+        rgblight_sethsv_range(HSV_OFF, 11, 34);
+
+rgblight_sethsv_range(HSV_OFF, 34, 36);
+        rgblight_sethsv_at(HSV_ORANGE,   36);
+        rgblight_sethsv_range(HSV_OFF, 37, 41);
+        rgblight_sethsv_range(HSV_ORANGE, 41, 44   );
+        rgblight_sethsv_range(HSV_OFF, 44, 68);
+        break;
+    default:
+        rgblight_sethsv_noeeprom(85, 255, 64);
+        break;
+  
+  }
+  }
 
 
 //SSD1306 OLED update loop, make sure to enable OLED_ENABLE=yes in rules.mk
